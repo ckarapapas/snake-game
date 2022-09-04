@@ -35,6 +35,17 @@ while game_is_on:
     if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
         game_is_on = False
         scoreboard.game_over()
+    new_seg = []
+    for seg in snake.segments[1:]:
+        new_seg.append(seg)
+    poss = []
+    for seg in new_seg:
+        poss.append(seg.position())
+    if snake.head.position() in poss:
+        game_is_on = False
+        scoreboard.game_over()
+
+
 
 
 
