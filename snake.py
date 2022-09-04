@@ -6,14 +6,16 @@ class Snake:
         starting_positions = [(0, 0), (-20, 0), (-40, 0)]
         self.segments = []
         for pos in starting_positions:
-            new_t = Turtle(shape="square")
-            new_t.color("white")
-            new_t.penup()
-            new_t.goto(pos)
-            self.segments.append(new_t)
+            self.add_segment(pos)
 
         self.head = self.segments[0]
 
+    def add_segment(self, pos):
+        new_t = Turtle(shape="square")
+        new_t.color("white")
+        new_t.penup()
+        new_t.goto(pos)
+        self.segments.append(new_t)
     def move(self):
         for segnum in range(len(self.segments) - 1, 0, -1):
             new_x = self.segments[segnum-1].pos()[0]
@@ -44,5 +46,8 @@ class Snake:
             self.segments[0].setheading(270)
         else:
             pass
+
+    def extend(self):
+        self.add_segment(self.segments[-1].position())
 
 
